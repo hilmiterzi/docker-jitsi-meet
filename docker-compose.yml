@@ -193,6 +193,10 @@ services:
     prosody:
         image: jitsi/prosody:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
+        ports:
+        - "5280:5280"   # Prosody HTTP/WebSocket
+        - "5222:5222"   # XMPP client connections (optional)
+        - "5269:5269"   # Server-to-server (optional)
         expose:
             - '${XMPP_PORT:-5222}'
             - '${PROSODY_S2S_PORT:-5269}'
